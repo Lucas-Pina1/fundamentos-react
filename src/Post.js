@@ -1,12 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { prototype } from "html-webpack-plugin";
+import PostHeader from "./PostHeader";
 
 function Post(props) {
   return (
     <>
       <article>
-        <strong>{props.post.title}</strong> <br />
-        <button onClick={() => props.onRemove(props.post.id)}>Remover</button>
+        <PostHeader
+          onRemove={props.onRemove}
+          post={{
+            id: props.post.id,
+            title: props.post.title,
+            read: props.post.read,
+          }}
+        />
         <br />
         <small>{props.post.subtitle}</small>
         <br />
@@ -18,11 +26,12 @@ function Post(props) {
 }
 
 Post.PropTypes = {
-  likes: PropTypes.number.isRequired,
   onRemove: PropTypes.func.isRequired,
   post: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string.isRequired,
+    likes: PropTypes.number.isRequired,
+    read: ProtoTypes.bool.isRequired,
   }).isRequired,
 };

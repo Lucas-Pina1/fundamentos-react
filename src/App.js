@@ -1,7 +1,10 @@
-import React, { state, useState } from "react";
+import React, { useState, createContext } from "react";
 
 import Post from "./Post";
 import Header from "./Header";
+
+import { ThemeProvider } from "./ThemeContext";
+
 
 // Render -> renderizar
 function App() {
@@ -28,8 +31,8 @@ function App() {
   }
 
   return (
-    <>
-      <Header title="JStack's Blog">
+    <ThemeProvider>
+      <Header>
         <h2>Posts da semana</h2>
         <button onClick={handleRefresh}>Atualizar</button>
       </Header>
@@ -41,13 +44,10 @@ function App() {
           key={post.id}
           likes={post.likes}
           onRemove={handleRemovePost}
-          post={{
-            title: post.title,
-            subtitle: post.subtitle,
-          }}
+          post={post}
         />
       ))}
-    </>
+    </ThemeProvider>
   );
 }
 
