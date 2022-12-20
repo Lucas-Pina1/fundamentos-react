@@ -1,10 +1,10 @@
 import React, { useState, createContext } from "react";
 
-import Post from "./Post";
-import Header from "./Header";
+import Post from "../Post";
+import Header from "../Header";
+import Title from "../Title";
 
-import { ThemeProvider } from "./ThemeContext";
-
+import { ThemeProvider } from "../../context/ThemeContext";
 
 // Render -> renderizar
 function App() {
@@ -33,8 +33,10 @@ function App() {
   return (
     <ThemeProvider>
       <Header>
-        <h2>Posts da semana</h2>
-        <button onClick={handleRefresh}>Atualizar</button>
+        <Title as="h2">
+          Posts da semana
+          <button onClick={handleRefresh}>Atualizar</button>
+        </Title>
       </Header>
 
       <hr />
